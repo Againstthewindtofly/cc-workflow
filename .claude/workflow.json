@@ -1,0 +1,57 @@
+{
+  "workflow": {
+    "version": "1.0",
+    "current_stage": "requirement-analyst",
+    "current_task": "项目初始化和需求分析",
+    "status": "ready",
+    "last_updated": "2024-01-15T00:00:00Z",
+    "progress": {
+      "requirement-analyst": {
+        "status": "ready",
+        "description": "等待用户输入项目想法，开始需求分析",
+        "output_file": "docs/requirements.md",
+        "next_agent": "knowledge-researcher"
+      },
+      "knowledge-researcher": {
+        "status": "pending",
+        "depends_on": ["requirement-analyst"],
+        "output_file": "context/research/tech-stack.md",
+        "next_agent": "project-architect"
+      },
+      "project-architect": {
+        "status": "pending",
+        "depends_on": ["knowledge-researcher"],
+        "output_file": "docs/architecture.md",
+        "next_agent": "development-coordinator"
+      },
+      "development-coordinator": {
+        "status": "pending",
+        "depends_on": ["project-architect"],
+        "output_file": "docs/development-plan.md",
+        "next_agent": "frontend-developer"
+      },
+      "frontend-developer": {
+        "status": "pending",
+        "depends_on": ["development-coordinator"],
+        "description": "等待开发协调器分配前端任务"
+      },
+      "backend-developer": {
+        "status": "pending",
+        "depends_on": ["development-coordinator"],
+        "description": "等待开发协调器分配后端任务"
+      },
+      "code-reviewer": {
+        "status": "pending",
+        "depends_on": ["frontend-developer", "backend-developer"],
+        "description": "等待开发完成，进行代码审查"
+      }
+    },
+    "metadata": {
+      "project_name": "",
+      "created_at": "2024-01-15T00:00:00Z",
+      "workflow_version": "v0.1",
+      "total_stages": 6,
+      "completed_stages": 0
+    }
+  }
+}
